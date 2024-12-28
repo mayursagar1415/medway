@@ -1,0 +1,320 @@
+body {
+    font-family: "Poppins", sans-serif;
+  }
+  .gradient-bg {
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+  }
+  .service-card:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+  }
+  /* Profile dropdown visibility with animation */
+  .dropdown-menu {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s;
+  }
+  .dropdown-menu.show {
+    visibility: visible;
+    opacity: 1;
+  }
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    .mobile-nav-link {
+      padding: 12px 0;
+      text-align: center;
+    }
+    .mobile-header {
+      padding: 10px;
+      text-align: center;
+    }
+  }
+
+   /* Navbar */
+   .nav-link {
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #1e40af; /* Dark blue */
+    transform: scale(1.1);
+  }
+
+  .nav-link.active {
+    color: #1e40af; /* Active link color */
+    font-weight: bold;
+  }
+
+  .hamburger-menu {
+    transition: transform 0.3s ease;
+  }
+
+  /* Mobile Menu */
+  #mobile-menu {
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+  }
+
+  #mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  /* Smooth transition for navbar */
+  .nav-item {
+    transition: all 0.3s ease;
+  }
+
+  /* Button animation */
+  .btn-animate {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-animate:hover {
+    background-color: #2563eb; /* Lighter blue */
+    transform: scale(1.05);
+  }
+
+  /* Add to your CSS file */
+
+/* Fade-in effect when section comes into the viewport */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Hero button hover effect */
+  button:hover {
+    background-color: #2563eb; /* Lighter blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+  }
+  
+  /* Image hover effect */
+  img:hover {
+    transform: scale(1.05); /* Slightly enlarge the image on hover */
+  }
+  
+  /* Ensure smooth transitions for elements */
+  .transition-transform {
+    transition: transform 0.3s ease;
+  }
+  
+  .transition-duration {
+    transition: duration 0.3s ease;
+  }
+  
+  /* Fade-in effect when the section comes into the viewport */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Smooth transition for interactive elements */
+  .w-full:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); /* Lift effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Optional: Add a smooth fade-in effect for text */
+  .fade-in-text {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInText 1s forwards;
+  }
+  
+  @keyframes fadeInText {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  
+  /* Add fade-in and slide-in animations to the service cards */
+.service-card {
+    transition: all 0.5s ease;
+  }
+  
+  /* For when the section comes into view */
+  .service-card.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Define initial hidden state for service cards */
+  .service-card {
+    opacity: 0;
+    transform: translateX(50px); /* Initially off-screen */
+  }
+  
+  /* Optional: Add hover effect on service cards */
+  .service-card:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+  
+
+  /* Add fade-in and slide-up animations to the service cards */
+.service-card {
+    transition: all 0.1s ease; /* Faster transition */
+  }
+  
+  /* For when the section comes into view */
+  .service-card.in-view {
+    opacity: 1;
+    transform: translateY(0); /* Slide up effect */
+  }
+  
+  /* Define initial hidden state for service cards */
+  .service-card {
+    opacity: 0;
+    transform: translateY(50px); /* Initially positioned below the section */
+  }
+  
+  /* Optional: Add hover effect on service cards */
+  .service-card:hover {
+    transform: scale(1.05);
+    transition: all 0.1s ease;
+  }
+
+  /* Add ultra-fast fade-in and slide-up animations to the service cards */
+.service-card {
+    transition: all 0.1s ease; /* Even faster transition time */
+  }
+  
+  /* For when the section comes into view */
+  .service-card.in-view {
+    opacity: 1;
+    transform: translateY(0); /* Slide up effect */
+  }
+  
+  /* Define initial hidden state for service cards */
+  .service-card {
+    opacity: 0;
+    transform: translateY(30px); /* Slightly more significant initial slide for faster appearance */
+  }
+  
+  /* Optional: Add hover effect on service cards */
+  .service-card:hover {
+    transform: scale(1.05);
+    transition: all 0.1s ease; /* Adjusted hover transition time */
+  }
+
+  .service-card {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out; /* Adjust the timing as needed */
+  }
+  
+  .service-card.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .service-card {
+    will-change: transform, opacity;
+  }
+  
+  .cus-1{
+    height: 277px
+
+  }
+
+  .cus-2{
+    height: 140px;
+  }
+
+  .stat-value {
+    transition: all 2s ease-out;
+  }
+  
+  .stat-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .stat-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Optional: Hidden stats before the animation */
+.stat-item {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.stat-item.visible {
+  opacity: 1;
+}
+
+/* Animation for fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-in class */
+.animate-fade {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Animation for slide-in */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide-in class */
+.animate-slide {
+  opacity: 0;
+  animation: slideIn 1s ease-in-out forwards;
+}
+
+/* Visible class to trigger animations */
+.visible {
+  opacity: 1;
+}
+
+
+  

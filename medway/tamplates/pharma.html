@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediCare - Healthcare Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+      }
+      /* Profile dropdown visibility with animation */
+      .dropdown-menu {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out, visibility 0.2s;
+      }
+      .dropdown-menu.show {
+        visibility: visible;
+        opacity: 1;
+      }
+      /* Mobile-specific improvements */
+      @media (max-width: 640px) {
+        .mobile-nav-link {
+          padding: 12px 0;
+          text-align: center;
+        }
+        .mobile-header {
+          padding: 10px;
+          text-align: center;
+        }
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      /* Upload Button Styling */
+      .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
+      .upload-btn-wrapper input[type="file"] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+      /* Hover Effect for the upload button */
+      .upload-btn-wrapper button:hover {
+        transform: translateY(-2px);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      /* Pharmacy Card Hover Effect with Shadow */
+      .pharmacy-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e0e0e0; /* Adding border */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Light shadow */
+      }
+      .pharmacy-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Deeper shadow on hover */
+      }
+
+      /* Animation for Pharmacy Card Appearance */
+      .pharmacy-card {
+        opacity: 0;
+        animation: fadeIn 0.6s ease-in-out forwards;
+      }
+      .pharmacy-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .pharmacy-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .pharmacy-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      /* Keyframe Animation for Fade-in Effect */
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Button Hover Effect with Shadow */
+      button:hover {
+        transform: translateY(-2px);
+        transition: transform 0.3s ease-in-out, background-color 0.3s,
+          box-shadow 0.3s;
+        border-color: #38b2ac; /* Highlight border color */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow on button hover */
+      }
+
+      /* Search Input Focus Effect */
+      .focus\:ring-teal-500:focus {
+        box-shadow: 0 0 0 2px rgba(42, 211, 153, 0.5);
+        border-color: #38b2ac; /* Teal border color on focus */
+      }
+
+      /* Input Border */
+      input,
+      textarea {
+        border: 1px solid #e0e0e0; /* Border color */
+        transition: border-color 0.3s ease;
+      }
+
+      /* Focused Input Border */
+      input:focus,
+      textarea:focus {
+        border-color: #38b2ac; /* Teal border color on focus */
+        outline: none;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .upload-btn-wrapper button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-['Poppins'] bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+          <div
+            class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+          >
+            <div class="flex shrink-0 items-center">
+              <img
+                class="h-8 w-auto"
+                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                alt="Your Company"
+              />
+              <span class="ml-2 text-xl font-semibold text-black">MEDWAY</span>
+            </div>
+            <!-- Hamburger Menu for Mobile -->
+            <div class="sm:hidden">
+              <button
+                id="mobile-menu-button"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-black hover:bg-gray-100"
+              >
+                <svg
+                  class="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="hidden sm:ml-6 sm:block">
+              <div class="flex space-x-4">
+                <a
+                  href="https://mayursagar1415.github.io/MEDWAY.github.io/tamplates/index.html"
+                  class="rounded-md bg-gray-700 px-3 py-2 text-sm font-medium text-white"
+                  aria-current="page"
+                  >Home</a
+                >
+                <a
+                  href="https://mayursagar1415.github.io/MEDWAY.github.io/tamplates/dignosis.html"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-600 hover:text-white"
+                  >Services</a
+                >
+                <a
+                  href="https://mayursagar1415.github.io/MEDWAY.github.io/tamplates/doctors.html"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-600 hover:text-white"
+                  >About</a
+                >
+                <a
+                  href="https://mayursagar1415.github.io/MEDWAY.github.io/tamplates/internship.html"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-600 hover:text-white"
+                  >Contact</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <!-- Profile Icon -->
+            <button
+              type="button"
+              class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none"
+              id="user-menu-button"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt="User Profile"
+              />
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              id="dropdown-menu"
+              class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none dropdown-menu"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="user-menu-button"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >View notifications</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Your Profile</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Settings</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Sign out</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden sm:hidden">
+        <a
+          href="#"
+          class="block px-3 py-2 text-base font-medium text-black hover:bg-gray-600 hover:text-white mobile-nav-link"
+          >Home</a
+        >
+        <a
+          href="#"
+          class="block px-3 py-2 text-base font-medium text-black hover:bg-gray-600 hover:text-white mobile-nav-link"
+          >Services</a
+        >
+        <a
+          href="#"
+          class="block px-3 py-2 text-base font-medium text-black hover:bg-gray-600 hover:text-white mobile-nav-link"
+          >About</a
+        >
+        <a
+          href="#"
+          class="block px-3 py-2 text-base font-medium text-black hover:bg-gray-600 hover:text-white mobile-nav-link"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Upload Prescription and Search Section -->
+      <div class="flex flex-col lg:flex-row gap-4 items-center mb-8">
+        <!-- Upload Prescription -->
+        <div class="upload-btn-wrapper">
+          <button
+            class="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition"
+          >
+            Upload Prescription
+          </button>
+          <input
+            type="file"
+            name="prescription"
+            accept=".pdf,.jpg,.jpeg,.png"
+          />
+        </div>
+        <p class="text-sm text-gray-500 lg:mt-0">
+          Supported formats: PDF, JPG, PNG
+        </p>
+
+        <!-- Search Section -->
+        <div class="flex-1 lg:ml-4">
+          <div class="flex gap-4">
+            <input
+              type="text"
+              placeholder="Search by location..."
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+            <button
+              class="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pharmacy Grid -->
+      <section>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <!-- Pharmacy Card -->
+          <div
+            class="pharmacy-card bg-white p-4 shadow hover:shadow-md transition"
+          >
+            <div
+              class="h-40 bg-gray-200 rounded-lg mb-4 flex items-center justify-center"
+            >
+              <i class="bi bi-shop text-4xl text-gray-400"></i>
+            </div>
+            <h3 class="font-semibold text-gray-800 mb-2">
+              Apollo Care Pharmacy
+            </h3>
+            <p class="text-sm text-gray-600 mb-2">123 Healthcare Street</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <i class="bi bi-clock mr-2"></i>
+              Open 24/7
+            </div>
+          </div>
+          <!-- Repeat similar blocks for other pharmacies -->
+          <div
+            class="pharmacy-card bg-white p-4 shadow hover:shadow-md transition"
+          >
+            <div
+              class="h-40 bg-gray-200 rounded-lg mb-4 flex items-center justify-center"
+            >
+              <i class="bi bi-shop text-4xl text-gray-400"></i>
+            </div>
+            <h3 class="font-semibold text-gray-800 mb-2">
+              Health Plus Pharmacy
+            </h3>
+            <p class="text-sm text-gray-600 mb-2">456 Wellness Avenue</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <i class="bi bi-clock mr-2"></i>
+              Open 9 AM - 9 PM
+            </div>
+          </div>
+          <!-- Add more pharmacy cards as needed -->
+        </div>
+      </section>
+
+      <!-- Delivery Address Section -->
+      <section class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-lg font-semibold mb-4 text-gray-800">
+          Delivery Address
+        </h2>
+        <textarea
+          placeholder="Enter delivery address..."
+          rows="3"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+        ></textarea>
+      </section>
+
+      <!-- Submit Button -->
+      <div class="mt-6 text-center">
+        <button
+          class="bg-teal-500 text-white px-8 py-3 rounded-lg hover:bg-teal-600 transition"
+        >
+          Submit Order
+        </button>
+      </div>
+    </main>
+
+    <section>
+      <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div class="flex items-center mb-4">
+                <i class="bi bi-plus-circle text-blue-500 text-3xl"></i>
+                <span class="ml-2 text-xl font-semibold">Medway</span>
+              </div>
+              <p class="text-gray-400">
+                Providing quality healthcare services for a healthier tomorrow.
+              </p>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul class="space-y-2 text-gray-400">
+                <li><a href="#" class="hover:text-blue-500">Home</a></li>
+                <li><a href="#" class="hover:text-blue-500">Services</a></li>
+                <li><a href="#" class="hover:text-blue-500">About Us</a></li>
+                <li><a href="#" class="hover:text-blue-500">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+              <div class="space-y-2 text-gray-400">
+                <p><i class="bi bi-geo-alt"></i> 123 Medical Avenue, City</p>
+                <p><i class="bi bi-telephone"></i> +1 234 567 890</p>
+                <p><i class="bi bi-envelope"></i> info@medway.com</p>
+              </div>
+              <div class="flex space-x-4 mt-4">
+                <a href="#" class="text-blue-500 hover:text-blue-400"
+                  ><i class="bi bi-facebook"></i
+                ></a>
+                <a href="#" class="text-blue-500 hover:text-blue-400"
+                  ><i class="bi bi-twitter"></i
+                ></a>
+                <a href="#" class="text-blue-500 hover:text-blue-400"
+                  ><i class="bi bi-linkedin"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+          >
+            <p>&copy; 2024 Medway Medical Services. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <script>
+      // Toggle mobile menu
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Toggle dropdown visibility on click
+      const userMenuButton = document.getElementById("user-menu-button");
+      const dropdownMenu = document.getElementById("dropdown-menu");
+
+      userMenuButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle("show");
+      });
+
+      // Close the dropdown if clicked outside
+      window.addEventListener("click", (e) => {
+        if (
+          !userMenuButton.contains(e.target) &&
+          !dropdownMenu.contains(e.target)
+        ) {
+          dropdownMenu.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>
